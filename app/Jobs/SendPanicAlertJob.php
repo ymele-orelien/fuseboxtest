@@ -24,7 +24,6 @@ class SendPanicAlertJob implements ShouldQueue
     public function handle()
     {
         try {
-            // Envoi de la requête à Wayne Enterprises
             $response = Http::post('https://wayne-enterprises.com/api/panic', $this->panicData);
 
             if ($response->failed()) {

@@ -31,7 +31,6 @@ class PanicController extends Controller
             'latitude' => 'required|string',
             'panic_type' => 'nullable|string',
             'details' => 'nullable|string',
-            'reference_id' => 'required|string',
         ]);
 
         if ($validator->fails()) {
@@ -71,77 +70,6 @@ class PanicController extends Controller
             ], 500);
         }
     }
-    // public function sendPanic(Request $request)
-    // {
-    //     if (!auth()->check()) {
-    //         return response()->json([
-    //             'status' => 'error',
-    //             'message' => 'User not authenticated',
-    //         ], 401); // 401 Unauthorized
-    //     }
-
-    //     $validator = Validator::make($request->all(), [
-    //         'longitude' => 'required|string',
-    //         'latitude' => 'required|string',
-    //         'panic_type' => 'nullable|string',
-    //         'details' => 'nullable|string',
-    //         'reference_id' => 'required|string',
-    //     ]);
-
-    //     if ($validator->fails()) {
-    //         return response()->json([
-    //             'status' => 'error',
-    //             'message' => 'Validation failed',
-    //             'errors' => $validator->errors()
-    //         ], 400);
-    //     }
-
-    //     $user = auth()->user();
-
-    //     $panicData = [
-    //         'longitude' => $request->longitude,
-    //         'latitude' => $request->latitude,
-    //         'panic_type' => $request->panic_type,
-    //         'reference_id' => $request->reference_id,
-    //         'user_name' => $user->name,
-    //         'details' => $request->details,
-    //     ];
-
-    //     $response = Http::withHeaders([
-    //         'Authorization' => 'Bearer ' . env('API_BEARER_TOKEN'),
-    //         'Content-Type' => 'application/json',
-    //         'Accept' => 'application/json',
-    //     ])->post('https://wayne.fusebox-staging.co.za/api/v1/panic/create', $panicData);
-
-    //     if ($response->successful()) {
-    //         $panic = Panic::create([
-    //             'user_id' => $user->id,
-    //             'longitude' => $request->longitude,
-    //             'latitude' => $request->latitude,
-    //             'panic_type' => $request->panic_type,
-    //             'reference_id' => $request->reference_id,
-    //             'user_name' => $user->name,
-    //             'details' => $request->details,
-    //             'status' => true,
-    //         ]);
-
-    //         SendPanicAlertJob::dispatch($panic);
-
-    //         return response()->json([
-    //             'status' => 'success',
-    //             'message' => 'Panic raised successfully',
-    //             'data' => $panic
-    //         ], 200);
-    //     } else {
-    //         return response()->json([
-    //             'status' => 'error',
-    //             'message' => 'Failed to send panic alert',
-    //             'error' => $response->json()
-    //         ], $response->status());
-    //     }
-    // }
-
-
     public function getPanic()
     {
         if (!auth()->check()) {
