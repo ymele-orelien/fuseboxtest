@@ -1,4 +1,6 @@
 <!-- the steps to make the application work -->
+# composer install
+install dependences
 # database name "fusebox"
 creates a new database with the name fusebox
 
